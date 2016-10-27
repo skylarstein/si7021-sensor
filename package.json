@@ -1,6 +1,6 @@
 {
   "name": "si7021-sensor",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "A Node.js I2C driver for the Si7021 Temperature and Humidity and Sensor",
   "main": "Si7021.js",
   "scripts": {
