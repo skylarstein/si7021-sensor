@@ -2,13 +2,9 @@
 
 const Si7021 = require('si7021-sensor');
 
-// The Si7021 constructor options are optional.
-// Defaults are i2cBusNo 1, i2cAddress 0x40.
-// 
-const options = { i2cBusNo   : 1,
-                  i2cAddress : Si7021.SI7021_DEFAULT_I2C_ADDRESS() };
-
-const si7021 = new Si7021(options);
+// Si7021 constructor options object is optional, i2cBusNo defaults to 1
+//
+const si7021 = new Si7021({ i2cBusNo : 1 });
 
 const readSensorData = () => {
   si7021.readSensorData()

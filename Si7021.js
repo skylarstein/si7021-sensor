@@ -1,7 +1,7 @@
 /*
   Si7021.js
 
-  I2C driver for the Silion Labs Si7021 Temperature and Humidity Sensor
+  I2C driver for the Silicon Labs Si7021 Temperature and Humidity Sensor
 */
 
 'use strict';
@@ -11,8 +11,8 @@ class Si7021 {
   constructor(options) {
     const i2c = require('i2c-bus');
     this.i2cBus = i2c.openSync((options && options.hasOwnProperty('i2cBusNo')) ? options.i2cBusNo : 1);
-    this.i2cAddress = (options && options.hasOwnProperty('i2cAddress')) ? options.i2cAddress : Si7021.SI7021_DEFAULT_I2C_ADDRESS();
 
+    this.SI7021_ADDRESS                 = 0x40;
     this.SI7021_RESET_CMD               = 0xFE;
     this.SI7021_READRHT_REG_CMD         = 0xE7;
     this.SI7021_MEASURE_TEMP_NOHOLD_CMD = 0xF3;
@@ -24,13 +24,13 @@ class Si7021 {
     return new Promise((resolve, reject) => {
       // Issue reset, wait for completion, verify
       //
-      this.i2cBus.writeByte(this.i2cAddress, this.SI7021_RESET_CMD, 0, (err) => {
+      this.i2cBus.writeByte(this.SI7021_ADDRESS, this.SI7021_RESET_CMD, 0, (err) => {
         if(err) {
           return reject(err);
         }
 
         setTimeout(() => {
-          this.i2cBus.readByte(this.i2cAddress, this.SI7021_READRHT_REG_CMD, (err, userRegister) => {
+          this.i2cBus.readByte(this.SI7021_ADDRESS, this.SI7021_READRHT_REG_CMD, (err, userRegister) => {
             if(err) {
               return reject(err);
             }
@@ -50,13 +50,13 @@ class Si7021 {
     return new Promise((resolve, reject) => {
       // Request temperature, wait, read
       //
-      this.i2cBus.writeByte(this.i2cAddress, this.SI7021_MEASURE_TEMP_NOHOLD_CMD, 0, (err) => {
+      this.i2cBus.writeByte(this.SI7021_ADDRESS, this.SI7021_MEASURE_TEMP_NOHOLD_CMD, 0, (err) => {
         if(err) {
           return reject(err);
         }
 
         setTimeout(() => {
-          this.i2cBus.i2cRead(this.i2cAddress, 3, new Buffer(3), (err, bytesRead, data) => {
+          this.i2cBus.i2cRead(this.SI7021_ADDRESS, 3, new Buffer(3), (err, bytesRead, data) => {
             if(err) {
               return reject(err);
             }
@@ -66,13 +66,13 @@ class Si7021 {
 
             // Request humidity, wait, read
             //
-            this.i2cBus.writeByte(this.i2cAddress, this.SI7021_MEASURE_HUM_NOHOLD_CMD, 0, (err) => {
+            this.i2cBus.writeByte(this.SI7021_ADDRESS, this.SI7021_MEASURE_HUM_NOHOLD_CMD, 0, (err) => {
               if(err) {
                 return reject(err);
               }
 
               setTimeout(() => {
-                this.i2cBus.i2cRead(this.i2cAddress, 3, new Buffer(3), (err, bytesRead, data) => {
+                this.i2cBus.i2cRead(this.SI7021_ADDRESS, 3, new Buffer(3), (err, bytesRead, data) => {
                   if(err) {
                     return reject(err);
                   }
@@ -91,10 +91,6 @@ class Si7021 {
         }, 25);
       });
     });
-  }
-
-  static SI7021_DEFAULT_I2C_ADDRESS() {
-    return 0x40;
   }
 }
 
