@@ -1,6 +1,9 @@
-# si7021-sensor [![Node.js versions](https://img.shields.io/badge/Node.js-4.x%20through%207.x-brightgreen.svg)](https://nodejs.org) [![NPM version](https://img.shields.io/npm/v/si7021-sensor.svg)](https://www.npmjs.com/package/si7021-sensor)
+# si7021-sensor
+[![Node.js versions](https://img.shields.io/badge/Node.js-4.x%20through%207.x-brightgreen.svg)](https://nodejs.org) [![NPM version](https://img.shields.io/npm/v/si7021-sensor.svg)](https://www.npmjs.com/package/si7021-sensor)
 
-Welcome to si7021-sensor, a Node.js I2C module for the Silicon Labs Si7021 Temperature and Humidity Sensor. Adafruit has a [Si7021 breakout board](https://www.adafruit.com/product/3251), and [here is the datasheet](https://cdn-learn.adafruit.com/assets/assets/000/035/931/original/Support_Documents_TechnicalDocs_Si7021-A20.pdf).
+[<img src="https://cdn-learn.adafruit.com/guides/images/000/001/451/medium800/pinouts.jpg" width="150" align="right">](https://www.adafruit.com/product/3251)
+
+Welcome to si7021-sensor, a Node.js I2C module for the Silicon Labs Si7021 Temperature and Humidity Sensor. Adafruit sells a [Si7021 breakout board](https://www.adafruit.com/product/3251) and [here is the datasheet](https://cdn-learn.adafruit.com/assets/assets/000/035/931/original/Support_Documents_TechnicalDocs_Si7021-A20.pdf).
 
 This module uses [i2c-bus](https://github.com/fivdi/i2c-bus) which should provide access with Node.js on Linux boards like the Raspberry Pi Zero, 1, 2, or 3, BeagleBone, BeagleBone Black, or Intel Edison.
 
