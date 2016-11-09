@@ -62,7 +62,7 @@ class Si7021 {
             }
 
             let temperature_C = (((((data[0] << 8) | data[1]) * 175.72) / 65536) - 46.85);
-            let checksum_T    = data[2];
+            //let checksum_T    = data[2];
 
             // Request humidity, wait, read
             //
@@ -78,7 +78,7 @@ class Si7021 {
                   }
 
                   let humidity   = (((((data[0] << 8) | data[1]) * 125) / 65536) - 6);
-                  let checksum_H = data[2];
+                  //let checksum_H = data[2];
 
                   return resolve({
                     humidity      : humidity,

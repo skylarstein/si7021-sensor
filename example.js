@@ -16,7 +16,7 @@ const readSensorData = () => {
       console.log(`Si7021 read error: ${err}`);
       setTimeout(readSensorData, 2000);
     });
-}
+};
 
 si7021.reset()
   .then((result) => readSensorData())
