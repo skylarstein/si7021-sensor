@@ -35,8 +35,8 @@ class Si7021 {
               return reject(err);
             }
 
-            if(userRegister !=  this.SI7021_USER_REG_DEFAULT) {
-              return reject(`User register returned 0x${userRegister.toString(16)}. Expected 0x${this.SI7021_USER_REG_DEFAULT.toString(16)}`);
+            if(userRegister !== this.SI7021_USER_REG_DEFAULT) {
+              return reject(`User register returned 0x${userRegister.toString(16)}. Expected 0x${this.SI7021_USER_REG_DEFAULT.toString(16)} after reset.`);
             }
 
             return resolve(userRegister);
@@ -61,8 +61,8 @@ class Si7021 {
               return reject(err);
             }
 
-            let temperature_C = (((((data[0] << 8) | data[1]) * 175.72) / 65536) - 46.85);
-            //let checksum_T    = data[2];
+            const temperature_C = (((((data[0] << 8) | data[1]) * 175.72) / 65536) - 46.85);
+            //const checksum_T = data[2];
 
             // Request humidity, wait, read
             //
@@ -77,8 +77,8 @@ class Si7021 {
                     return reject(err);
                   }
 
-                  let humidity   = (((((data[0] << 8) | data[1]) * 125) / 65536) - 6);
-                  //let checksum_H = data[2];
+                  const humidity   = (((((data[0] << 8) | data[1]) * 125) / 65536) - 6);
+                  //const checksum_H = data[2];
 
                   return resolve({
                     humidity      : humidity,

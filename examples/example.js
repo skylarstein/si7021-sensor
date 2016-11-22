@@ -1,5 +1,3 @@
-'use strict';
-
 const Si7021 = require('si7021-sensor');
 
 // Si7021 constructor options object is optional, i2cBusNo defaults to 1
@@ -19,5 +17,5 @@ const readSensorData = () => {
 };
 
 si7021.reset()
-  .then((result) => readSensorData())
+  .then(() => readSensorData())
   .catch((err) => console.error(`Si7021 reset failed: ${err} `));
